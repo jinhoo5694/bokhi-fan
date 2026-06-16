@@ -1,5 +1,4 @@
 import type { ChannelInfo } from "@/lib/types";
-import { formatCount } from "@/lib/format";
 
 const HANDLE = process.env.NEXT_PUBLIC_CHANNEL_HANDLE || "bokhi-3637";
 const CHANNEL_URL = `https://www.youtube.com/@${HANDLE}`;
@@ -32,7 +31,7 @@ export default function Hero({
         </div>
 
         <p className="mb-2 inline-block rounded-full bg-paw/40 px-4 py-1 text-sm font-semibold text-cocoa">
-          🐹 골든 햄스터 팬 페이지
+          🐹 떡복히 팬 페이지
         </p>
         <h1 className="font-display text-4xl text-cocoa sm:text-6xl">
           {channel.title}
@@ -42,21 +41,6 @@ export default function Hero({
             {channel.description}
           </p>
         )}
-
-        {/* 통계 */}
-        <div className="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-cocoa-soft">
-          {channel.subscriberCount != null && (
-            <span>
-              <b className="text-cocoa">{formatCount(channel.subscriberCount)}</b>{" "}
-              구독자
-            </span>
-          )}
-          {channel.videoCount != null && (
-            <span>
-              <b className="text-cocoa">{formatCount(channel.videoCount)}</b> 영상
-            </span>
-          )}
-        </div>
 
         {/* CTA */}
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">

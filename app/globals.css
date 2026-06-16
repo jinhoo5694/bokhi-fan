@@ -32,6 +32,70 @@ body {
   letter-spacing: 0.01em;
 }
 
+/* ── 국악 무드 동적 배경 ───────────────────────────── */
+
+/* 천천히 흐르는 한지빛 블롭 */
+@keyframes drift {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(4vw, -3vh) scale(1.08);
+  }
+  66% {
+    transform: translate(-3vw, 4vh) scale(0.95);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+/* 떨어지는 매화 꽃잎: 바깥 래퍼는 아래로 낙하 */
+@keyframes petal-fall {
+  0% {
+    transform: translateY(-12vh);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(112vh);
+    opacity: 0;
+  }
+}
+
+/* 안쪽 꽃잎은 좌우로 흔들리며 회전 (바람 결) */
+@keyframes petal-sway {
+  0% {
+    transform: translateX(-14px) rotate(-25deg);
+  }
+  50% {
+    transform: translateX(14px) rotate(30deg);
+  }
+  100% {
+    transform: translateX(-14px) rotate(-25deg);
+  }
+}
+
+.petal {
+  /* 매화 꽃잎 모양 (한쪽이 뾰족한 물방울) */
+  border-radius: 100% 0 100% 100%;
+  background: linear-gradient(135deg, #f7c9c5 0%, #f2b8b5 45%, #f2c892 100%);
+  box-shadow: 0 2px 6px rgba(229, 154, 149, 0.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-drift,
+  .anim-petal-fall,
+  .anim-petal-sway {
+    animation: none !important;
+  }
+}
+
 /* 스크롤바도 톤에 맞춤 */
 ::-webkit-scrollbar {
   width: 10px;

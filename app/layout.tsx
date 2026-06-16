@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Backdrop from "@/components/Backdrop";
 
 export const metadata: Metadata = {
   title: "뽀록 | 어느각도로 봐도 떡복히",
@@ -30,7 +31,10 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <Backdrop />
+        {children}
+      </body>
     </html>
   );
 }

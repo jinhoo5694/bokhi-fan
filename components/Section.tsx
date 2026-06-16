@@ -6,7 +6,7 @@ export default function Section({
   children,
 }: {
   id: string;
-  emoji: string;
+  emoji?: string;
   title: string;
   subtitle?: string;
   children: React.ReactNode;
@@ -16,7 +16,7 @@ export default function Section({
       <div className="mb-6 flex items-end justify-between gap-4">
         <div>
           <h2 className="font-display text-2xl text-cocoa sm:text-3xl">
-            <span className="mr-2">{emoji}</span>
+            {emoji && <span className="mr-2">{emoji}</span>}
             {title}
           </h2>
           {subtitle && (

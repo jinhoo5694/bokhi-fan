@@ -21,22 +21,12 @@ export default async function Home() {
         {live && <LiveSection live={live} />}
 
         {shorts.length > 0 && (
-          <Section
-            id="shorts"
-            emoji="⚡"
-            title="쇼츠"
-            subtitle="짧고 귀여운 순간들"
-          >
+          <Section id="shorts" title="쇼츠" subtitle="짧고 귀여운 순간들">
             <ShortsGrid shorts={shorts} />
           </Section>
         )}
 
-        <Section
-          id="videos"
-          emoji="🎬"
-          title="동영상"
-          subtitle="최신 영상 모아보기"
-        >
+        <Section id="videos" title="동영상" subtitle="최신 영상 모아보기">
           <VideoGrid videos={videos} />
         </Section>
 
