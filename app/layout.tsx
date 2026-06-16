@@ -3,12 +3,12 @@ import "./globals.css";
 import Backdrop from "@/components/Backdrop";
 
 export const metadata: Metadata = {
-  title: "뽀록 | 어느각도로 봐도 떡복히",
+  title: "어느각도로 봐도 떡복히",
   description:
-    "골든 햄스터 뽀록의 유튜브 채널 팬 페이지 — 최신 영상, 쇼츠, 라이브 방송을 한 곳에서 🐹",
+    "어느각도로 봐도 떡복히 — 최신 영상, 쇼츠, 라이브 방송을 한 곳에서 🐹",
   openGraph: {
-    title: "뽀록 | 어느각도로 봐도 떡복히",
-    description: "골든 햄스터 뽀록의 유튜브 채널 팬 페이지 🐹",
+    title: "어느각도로 봐도 떡복히",
+    description: "어느각도로 봐도 떡복히 유튜브 채널 팬 페이지 🐹",
     type: "website",
   },
   icons: {
