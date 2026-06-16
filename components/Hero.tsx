@@ -1,4 +1,5 @@
 import type { ChannelInfo } from "@/lib/types";
+import ThumbWall from "./ThumbWall";
 
 const HANDLE = process.env.NEXT_PUBLIC_CHANNEL_HANDLE || "bokhi-3637";
 const CHANNEL_URL = `https://www.youtube.com/@${HANDLE}`;
@@ -6,13 +7,16 @@ const CHANNEL_URL = `https://www.youtube.com/@${HANDLE}`;
 export default function Hero({
   channel,
   isLive,
+  thumbs,
 }: {
   channel: ChannelInfo;
   isLive: boolean;
+  thumbs: { src: string; vertical: boolean }[];
 }) {
   return (
     <header className="relative overflow-hidden">
-      <div className="mx-auto max-w-5xl px-5 pb-10 pt-16 text-center sm:pt-24">
+      <ThumbWall thumbs={thumbs} />
+      <div className="relative z-10 mx-auto max-w-5xl px-5 pb-10 pt-16 text-center sm:pt-24">
         {/* 프로필 */}
         <div className="relative mx-auto mb-6 h-36 w-36 sm:h-44 sm:w-44">
           <div className="absolute inset-0 rounded-full bg-fur/30 blur-2xl" />
@@ -83,6 +87,12 @@ export default function Hero({
             className="rounded-full bg-cream px-4 py-2 text-cocoa ring-1 ring-fur/20 transition hover:bg-fur-light"
           >
             동영상
+          </a>
+          <a
+            href="#support"
+            className="rounded-full bg-paw/50 px-4 py-2 text-cocoa ring-1 ring-paw-dark/30 transition hover:bg-paw"
+          >
+            🍞 빵 사주기
           </a>
         </nav>
       </div>

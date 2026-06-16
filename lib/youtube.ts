@@ -33,6 +33,24 @@ function bestThumb(thumbs: Record<string, { url: string }> | undefined): string 
   );
 }
 
+/**
+ * 실제 쇼츠인지 판별: youtube.com/shorts/{id} 가 200이면 쇼츠,
+ * 일반 영상이면 /watch 로 리다이렉트(3xx)된다. 길이 추측보다 정확.
+ * 실패 시 null 반환 → 호출부에서 길이 기준으로 폴백.
+ */
+async function isShortById(id: string): Promise<boolean | null> {
+  try {
+    const res = await fetch(`https://www.youtube.com/shorts/${id}`, {
+      method: "HEAD",
+      redirect: "manual",
+      next: { revalidate: REVALIDATE },
+    });
+    return res.status === 200;
+  } catch {
+    return null;
+  }
+}
+
 async function ytFetch(
   endpoint: string,
   params: Record<string, string>
@@ -104,7 +122,7 @@ async function fetchFromApi(): Promise<HomeData> {
             publishedAt: v.snippet?.publishedAt || "",
             viewCount: Number(v.statistics?.viewCount) || null,
             durationSeconds,
-            // 60초 이하 → 쇼츠로 분류
+            // 우선 길이로 임시 분류(쇼츠는 최대 3분) → 아래에서 URL로 정밀 보정
             isShort: durationSeconds > 0 && durationSeconds <= 60,
             liveState: v.snippet?.liveBroadcastContent || "none",
           };
@@ -122,6 +140,20 @@ async function fetchFromApi(): Promise<HomeData> {
       }
 
       const normal = items.filter((i) => i.liveState !== "live");
+
+      // 쇼츠 정밀 판별: 3분 이하 후보만 /shorts/ URL로 확인(60초 넘는 쇼츠 대응)
+      await Promise.all(
+        normal.map(async (it) => {
+          if (it.durationSeconds > 0 && it.durationSeconds <= 182) {
+            const verdict = await isShortById(it.id);
+            it.isShort =
+              verdict !== null ? verdict : it.durationSeconds <= 60;
+          } else {
+            it.isShort = false;
+          }
+        })
+      );
+
       shorts = normal.filter((i) => i.isShort);
       videos = normal.filter((i) => !i.isShort);
     }

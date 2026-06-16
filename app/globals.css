@@ -81,6 +81,32 @@ body {
   }
 }
 
+/* 떠다니는 썸네일 카드 — 부유 + 미세한 흔들림 */
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(5px, -16px) rotate(2.5deg);
+  }
+}
+@keyframes floaty2 {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(-7px, -13px) rotate(-2deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-floaty {
+    animation: none !important;
+  }
+}
+
 .petal {
   /* 매화 꽃잎 모양 (한쪽이 뾰족한 물방울) */
   border-radius: 100% 0 100% 100%;
