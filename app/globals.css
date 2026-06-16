@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: "Apple SD Gothic Neo", "Pretendard", "Noto Sans KR", system-ui,
+    -apple-system, sans-serif;
+  --font-display: "Jua", "Apple SD Gothic Neo", "Noto Sans KR", system-ui,
+    sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #faf1e4;
+  color: #5b4636;
+  /* 포근한 베딩 느낌의 은은한 배경 */
+  background-image: radial-gradient(
+      circle at 15% 10%,
+      rgba(242, 200, 146, 0.35),
+      transparent 40%
+    ),
+    radial-gradient(circle at 85% 0%, rgba(242, 184, 181, 0.3), transparent 35%);
+  background-attachment: fixed;
+}
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.01em;
+}
+
+/* 스크롤바도 톤에 맞춤 */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #e2a05e;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-track {
+  background: #faf1e4;
+}
