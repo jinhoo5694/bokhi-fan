@@ -3,13 +3,21 @@ import "./globals.css";
 import Backdrop from "@/components/Backdrop";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://bokhi-fan.vercel.app"
+  ),
   title: "어느각도로 봐도 떡복히",
   description:
     "어느각도로 봐도 떡복히 — 최신 영상, 쇼츠, 라이브 방송을 한 곳에서 🐹",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "어느각도로 봐도 떡복히",
     description: "어느각도로 봐도 떡복히 유튜브 채널 팬 페이지 🐹",
     type: "website",
+    url: "/",
+    images: ["/bokhi.jpg"],
   },
   icons: {
     icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐹</text></svg>",
